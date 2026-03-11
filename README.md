@@ -1,6 +1,8 @@
 Overview
 This project implements a simple order placement API with inventory protection against overselling under concurrent requests.
 
+---
+
 Setup Instructions
 1. Ensure Docker and Docker Compose are installed.
 
@@ -16,6 +18,7 @@ go run main.go
 
 http://localhost:8000
 
+---
 
 API Endpoints
 
@@ -49,6 +52,7 @@ Request → Validate Input → Begin Transaction
 
 GET /health - To confirm if API is running
 
+---
 
 Design Decisions
 
@@ -64,12 +68,14 @@ Added a check for entries in the products table even though the 'UNIQUE' SQL con
 
 This ensured the next successful insert will not skip over the ID that was 'hidden' by the failed insert, hence, avoiding 'gaps' in the ID.
 
+---
 
 Assumptions
 
 Products must be created before orders can be placed.
 Inventory represents the currently available stock.
 
+---
 
 Improvements With More Time
 
