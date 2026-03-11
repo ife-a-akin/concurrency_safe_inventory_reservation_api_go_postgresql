@@ -27,6 +27,11 @@ Example request:
   "quantity_on_hand": 370
 }
 
+Product flow:
+Request → Validate Input → Check if product's SKU already exists
+→ Insert product
+
+
 POST /placeorder
 
 Example request:
@@ -34,6 +39,15 @@ Example request:
   "product_id": 9,
   "quantity": 100
 }
+
+Order flow:
+Request → Validate Input → Begin Transaction
+→ Lock Product Row (SELECT FOR UPDATE)
+→ Verify Inventory → Update Inventory
+→ Commit Transaction → Insert Order
+
+
+GET /health - To confirm if API is running
 
 
 Design Decisions
